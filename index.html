@@ -45,7 +45,7 @@
     </style>
 </head>
 <body>
-    <button id="surpriseBtn">Click for surprise</button>
+    <button id="surpriseBtn">Click for a surprise</button>
     <div id="timer">3</div>
     <video id="video" controls>
         <source src="pedro.mp4" type="video/mp4">
@@ -73,6 +73,14 @@
                     video.play();
                 }
             }, 1000);
+        });
+
+        const video = document.getElementById("video");
+        video.addEventListener("ended", function() {
+            location.reload();
+        });
+        window.addEventListener("unload", function() {
+            location.reload();
         });
     </script>
 </body>
