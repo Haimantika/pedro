@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Video</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        }
+        #surpriseBtn {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #surpriseBtn:hover {
+            background-color: #e55b50;
+        }
+        #timer {
+            display: none;
+            font-size: 100px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        #video {
+            display: none;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <button id="surpriseBtn">Click for surprise</button>
+    <div id="timer">3</div>
+    <video id="video" controls>
+        <source src="pedro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        document.getElementById("surpriseBtn").addEventListener("click", function() {
+            this.style.display = "none";
+            const timer = document.getElementById("timer");
+            timer.style.display = "block";
+            let count = 3;
+            const interval = setInterval(function() {
+                count--;
+                timer.textContent = count;
+                timer.style.transform = "scale(1.2)";
+                setTimeout(() => {
+                    timer.style.transform = "scale(1)";
+                }, 300);
+                if (count === 0) {
+                    clearInterval(interval);
+                    timer.style.display = "none";
+                    const video = document.getElementById("video");
+                    video.style.display = "block";
+                    video.play();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
